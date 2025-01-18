@@ -1,0 +1,18 @@
+The solution is to use the `!important` flag on the `font-size` property in the `.container p.special` selector to enforce the desired style:
+
+```css
+.container {
+  font-size: 16px;
+}
+
+.container p {
+  color: blue;
+}
+
+.container p.special {
+  color: red;
+  font-size: 12px !important; /* Using !important solves the issue */
+}
+```
+
+By using `!important`, the `font-size: 12px` rule now takes precedence, resolving the conflict between inheritance and specificity.
