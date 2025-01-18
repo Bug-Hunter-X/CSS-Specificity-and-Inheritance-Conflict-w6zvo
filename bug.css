@@ -1,0 +1,24 @@
+The following CSS code snippet demonstrates an uncommon error related to specificity and inheritance:
+
+```css
+.container {
+  font-size: 16px;
+}
+
+.container p {
+  color: blue;
+}
+
+.container p.special {
+  color: red;
+  font-size: 14px; /* This rule is unexpectedly overridden */
+}
+
+.container p.special {
+  font-size: 12px !important; /* This is the only way to override */
+}
+```
+
+The `font-size` property on the `.container p.special` selector is unexpectedly overridden by the `font-size` property on the `.container` selector, even though `.container p.special` is more specific.
+
+This happens because the browser applies the inheritance before specificity checks.  The `p` element inherits `font-size` from the parent, `.container`.  Then, specificity checks happen, and even though `.container p.special` has higher specificity, the inheritance overrides it.  The `!important` flag is required to force the desired `font-size`.
